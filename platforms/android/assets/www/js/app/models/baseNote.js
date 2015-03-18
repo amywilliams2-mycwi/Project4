@@ -21,6 +21,7 @@
  * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT
  * OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
+ *
  */
 /*jshint
          asi:true,
@@ -57,6 +58,10 @@ define( [ "yasmf" ], function( _y ) {
     self.registerNotification( "mediaContentsChanged" );
     self.registerNotification( "unitValueChanged" );
     self.registerNotification( "unitLabelsChanged" );
+	
+	/* Added Status notification */
+	self.registerNotification( "statusChanged" );
+	
     /**
      * The note's unique identifier. getUID is the getter, and
      * setUID is the setter. Two properties can be used to
@@ -123,23 +128,29 @@ define( [ "yasmf" ], function( _y ) {
       set: self.setName,
       configurable: true
     } );
-/*&&&&&&&&&&&&&&&&&&&&&&&&	*/
-	self._status = ""
-    self.getStatus = function() {
-      return self._status;
-    };
-    self.setStatus= function( theStatus ) {
-      self._status = theStatus;
-      self._modifiedDate = new Date();
-      self.notify( "statusChanged" );
-    };
-    Object.defineProperty( self, "status", {
-      get: self.getStatus,
-      set: self.setStatus,
-      configurable: true
-    } );
-/*&&&&&&&&&&&&&&&&&&&&&&&&&
-*/    /**
+	
+	
+	
+/* Added status get/set functions */
+
+self._status = "";
+self.getStatus = function() {
+return self._status;
+};
+self.setStatus = function( theStatus ) {
+self._status = theStatus;
+self.notify( "statusChanged" );
+};
+Object.defineProperty( self, "status", {
+get: self.getStatus,
+set: self.setStatus,
+configurable: true
+} );
+	
+	
+	
+	
+    /**
      * Instead of the line count, we'll use a generic "unit". For the BaseNote, this
      * is still a line count, but other note types may use it differently.
      *
@@ -223,20 +234,10 @@ define( [ "yasmf" ], function( _y ) {
     /**
      * All notes have a representation icon (a page of text, a sound wave, etc)
      */
-	 //Defining status variable
-/*	self._status = "Archived";
-    self.getstatus = function() {
-      return self._status;
-    };
-	Object.defineProperty( self, "status", {
-		get: self.getstatus,
-		Configerable: true
-	} );*/
     self._representation = "page-text-new";
     self.getRepresentation = function() {
       return self._representation;
     };
-
     Object.defineProperty( self, "representation", {
       get: self.getRepresentation,
       configurable: true
@@ -251,7 +252,6 @@ define( [ "yasmf" ], function( _y ) {
         "createdDate": self.createdDate,
         "modifiedDate": self.modifiedDate,
         "name": self.name,
-		"status": self.status,
         "textContents": self.textContents,
         "mediaContents": self.mediaContents,
         "unitValue": self.unitValue,
@@ -323,9 +323,6 @@ define( [ "yasmf" ], function( _y ) {
         }
         if ( typeof options.name !== "undefined" ) {
           self.name = options.name;
-        }
-		if ( typeof options.status !== "undefined" ) {
-          self.status = options.status;
         }
         if ( typeof options.textContents !== "undefined" ) {
           self.textContents = options.textContents;

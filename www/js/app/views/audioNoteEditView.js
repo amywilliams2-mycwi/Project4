@@ -63,8 +63,6 @@ define( [ "yasmf", "app/models/noteStorageSingleton",
         "NOTE_NAME": self._note.name,
         "NOTE_CONTENTS": self._note.textContents,
         "BACK": _y.T( "BACK" ),
-/*added new status to show selected status...doesn't work*/
-	    "NEW_STATUS": self._note.status.value,
         "DELETE_NOTE": _y.T( "app.nev.DELETE_NOTE" )
       } );
     };

@@ -53,16 +53,16 @@
     },
     "installed_plugins": {
         "org.apache.cordova.globalization": {
-            "PACKAGE_NAME": "com.packtpub.phonegaphotsho.wk4"
+            "PACKAGE_NAME": "com.packtpub.phonegaphotshot.filerv3"
         },
         "org.apache.cordova.plugin.softkeyboard": {
-            "PACKAGE_NAME": "com.packtpub.phonegaphotsho.wk4"
+            "PACKAGE_NAME": "com.packtpub.phonegaphotshot.filerv3"
         },
         "org.apache.cordova.file": {
-            "PACKAGE_NAME": "com.packtpub.phonegaphotsho.wk4"
+            "PACKAGE_NAME": "com.packtpub.phonegaphotshot.filerv3"
         },
         "org.apache.cordova.media": {
-            "PACKAGE_NAME": "com.packtpub.phonegaphotsho.wk4"
+            "PACKAGE_NAME": "com.packtpub.phonegaphotshot.filerv3"
         }
     },
     "dependent_plugins": {}
